@@ -1,0 +1,33 @@
+Simon Lee (sijlee)
+report.txt
+Lab7
+C335
+
+Discuss the advantages and disadvantages of printf debugging? Note: there is no right answer to this, we are just looking for your thoughts on the issue
+
+- Advatages: It was a good way to test STM32's performance.
+  Disadvantages: Just by debugging, we were not able to see what part of printf is causing system to slow down.
+
+Explain why the spiReadWrite function is called inside a higher level peripheral function (the lcdWrite function).
+
+- Each information is sent using  spiReadWrite to determine what to output in each pixels of LCD.
+
+Why does LCD_CS_DEASSERT() do? Why is it important?
+
+- LCD_CS_DEASSERT() is a macro that sets CS pin to high so that the peripheral is not communicating while initialization.
+
+Explain how the character data from the ASCII array in glcdfont.c gets converted to pixels.
+
+- Since a character in glcdfont.c can have up to five bytes with eight bits in each byte according to the lab manual, each byte represenets each columns of pixel. 
+  Bits inside each byte determines pixel of the row to be on and off.
+
+Give the exact timing difference between the two versions of f3d_lcd_fillScreen, from the Salae analyzer, and explain why the new function is faster.
+
+- Screen shot in separate Screenshot from 2016-02-26 13-57-29.jpg file. 
+  The new function is faster because it fills the screen by block of pixels at a time.
+
+* Logic analyzer screen shot of drawing to the LCD in separate Screenshot from 2016-03-03 15-32-01.jpg file.
+
+Difficulties 
+
+- It was difficult to cast gyro sensor values to array of characters. We found a function sprintf online to solve this problem.

@@ -1,0 +1,37 @@
+TEAM:
+  Brandon Burzon & Simon Lee
+
+DESCRIPTION:
+  Our game "Stack It" is a copy of the arcade game called Stacker. The objective
+of the game is the stack the blocks to reach to finish line. Each time "Z" is
+pressed on the nunchuk it will stop the current block and render a new block
+above the previous one. After the player is done with the game, he or she may
+press "C" to restart the game.
+
+A few modification were made from the original Stacker game. For instance, in
+our game, the x-axis position of the new block is generated at random. Also, to
+make the game more challenging, each time new block is smaller than the one
+before it.
+
+For creativity, we created TWO 3D FLAGS to cheer the player during the game!
+
+TASKS:
+  Both Simon and I worked on the whole project together in Lab.
+Here are the following tasks we completed while creating the game:
+
+  1.) Created square on the screen
+  2.) Add color to the square
+  3.) Figure out how to move the block
+  4.) Add collision detection whe the block hit a wall
+  5.) Added nunchuk logic to the game
+  6.) Figure out a good way to generate a new block on top of the old one
+  7.) Decided and added background color
+  8.) Added title banner
+  9.) Accidentally discovered how to add the moving flags
+  10.) Created a finish line detection
+  11.) Created the algorithm for generating blocks from random x position
+  12.) Decided the right speed that is not too easy nor too hard
+  13.) Decided the right block size
+  14.) Added flash screen when the player lost or won
+  15.) Added winning and losing sounds 
+  16.) Let the user play again

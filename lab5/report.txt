@@ -1,0 +1,32 @@
+Simon Lee (sijlee)
+Partner: Romaan Ahmed (roahmed)
+report.txt
+Lab5
+C335
+
+How many connections are required to communicate over UART?
+- 2 (RX and TX)
+
+What is the purpose of "alternate functions" for GPIO pins?
+-  a GPIO pin can be used for many peripheral we use "alternate functions" to specify 
+   GPIO pin to be not used as IN, Out or analog so that it can be used for debugging in our case.
+
+Define "baud rate" in your own words.
+- baud rate is pulse per second. Altough not exactly the same concept, we can see baud rate in systems programming 
+  as bit/s that it represents data rate for serial data transmission. We set proper baud rate for each 
+  different peripherals that they support for serial communications.
+
+Why do we need newlib_stubs? Specifically, is there a reason that printf won't work on the board without it?
+- We need newlib_stubs to prevent the library from buffing I/O. The board won't work with printf without it
+  since data transmission to the board will be buffered and IO won't be occured immediately.
+
+Give an example of a situation in which the Salae Logic Analyzer is the best debugging method and include a screen shot of the Logic application.
+- Salae Logic Analyzer is the best debugging method when we are testing peripherals connected via serial.
+  It gives us exact information when the peripheral is actually communicating or not.
+  *Screen shots in separate screenShot1.png and screenShot2.png files
+
+What did you learn, any difficulties you had
+- I learned how a system is communicating with peripherals through serial, basic concepts of RX/TX 
+  and how to debug serial connected peripherals.
+  It was really difficult to figure out how to attach Salae Logic Analyzer since the new one we were given in the lab
+  did not work. 

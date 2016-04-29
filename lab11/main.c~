@@ -1,0 +1,95 @@
+
+#include <stm32f30x.h>  // Pull in include files for F30x standard drivers 
+#include <f3d_led.h>
+#include <f3d_uart.h>
+#include <f3d_gyro.h>
+#include <f3d_lcd_sd.h>
+#include <f3d_i2c.h>
+#include <f3d_accel.h>
+#include <f3d_mag.h>
+#include <f3d_nunchuk.h>
+#include <f3d_rtc.h>
+#include <f3d_systick.h>
+#include <stdio.h>
+#include <stdint.h>
+/*
+Author: James Mantz
+Partner: Anna
+Data Created:2/5/16
+Last Modified by: James Mantz
+Data Last Modified: 2/11/16
+Assignment: Boards
+Part of: Lab 4
+*/ 
+
+// Simple looping delay function
+/*  void delay(void) { */
+/*   int i = 2000000; */
+/*   while (i-- > 0) { */
+/*     asm("nop");  This stops it optimising code out  */
+/*   } */
+/* } */
+
+int main(void) { 
+  //LED port
+  f3d_user_btn_init(); //initilzation
+  f3d_led_init(); //led initilzation
+  f3d_led_all_off();//turn all lights off just in case they are on
+  int count = 0;
+  while (count < 8) {
+    if (user_btn_read() == 1){
+    }
+    else{
+      f3d_led_on(count); //turn on 
+      f3d_systick_init(); //delay 
+      f3d_led_off(count); //then turn off
+      count++;
+    }}
+   
+  // f3d_led_all_on(); //after all the lights flash, turn all on
+  
+
+
+
+
+
+    /* GPIO_InitTypeDef GPIO_InitStructure; */
+    /* GPIO_StructInit(&GPIO_InitStructure); */
+    /* GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9; */
+    /* GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT; */
+    /* GPIO_InitStructure.GPIO_OType = GPIO_OType_PP; */
+    /* GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; */
+    /* GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL; */
+    /* RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOE, ENABLE); */
+    /* GPIO_Init(GPIOE, &GPIO_InitStructure); */
+    /* GPIOE->BRR = GPIO_Pin_9; */
+   
+    /* //new port A, pin 0 intialization */
+    /* GPIO_StructInit(&GPIO_InitStructure); */
+    /* GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0; */
+    /* GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN; */
+    /* GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL; */
+    /* RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE); */
+    /* GPIO_Init(GPIOA, &GPIO_InitStructure); */
+
+    
+    
+
+    /* while (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0) == 1) { */
+    /*   GPIOE->BSRR = GPIO_Pin_9; */
+    // }
+
+
+}
+
+
+
+#ifdef USE_FULL_ASSERT
+void assert_failed(uint8_t* file, uint32_t line) {
+/* Infinite loop */
+/* Use GDB to find out why we're here */
+  while(1);
+}
+#endif
+
+/* main.c ends here */

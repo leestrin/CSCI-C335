@@ -1,0 +1,27 @@
+report.txt
+Simon Lee (sijlee)
+Partner: Ethan Lawton (elawton2)
+CSCI-C335
+Lab4
+
+
+1) What are specs of the board you are using (ex. Speed, RAM, Flash)?
+ * Discovery kit for STM32F303      
+ - Operating Frequency: 72MHz
+ - Flash memory: 256KB
+ - RAM: 48KB
+ - Power supply: USB generic power or external 3V or 5V
+ - USB Mini-B connector
+ - two push buttons
+ - GPIO support
+2) What does GPIO stand for?
+ - General-Purpose Input/Output
+3) Is the provided delay function accurate? Why or why not? EDIT This question will be disregarded as this delay function does not have parameter Sorry for the confusion
+4) What are the Port and Pin Numbers of the two Green LEDs?
+ - Port: LD6, LD7
+ - Pin numbers: PE15, PE11
+5) What are the public attributes of the GPIO_InitTypeDef Struct?
+ - GPIO_Mode_IN
+ - GPIO_Mode_OUT
+ - GPIO_Mode_AF
+ - GPIO_Mode_AN

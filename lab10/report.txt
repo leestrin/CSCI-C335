@@ -1,0 +1,31 @@
+Simon Lee (sijlee)
+Lab10
+report.txt
+
+Q1)
+SD_CS_HIGH() allows data to port bits and executes the code,
+SD_CS_LOW() clear data port bit and resets the data.
+
+Q2)
+We can use this function by putting it in while loop replacing delay.
+timer is much more accurate since actual delay from delay loop can vary in different situations.
+
+Q3)
+Since processor can execute one thing at a time, DMA helps processor to efficiently order tasks to do.
+As a result, it improves performance.
+
+Q4)
+File Allocation Table locates file in a space of memory disk. 
+Corruption of an entry in the table such as two different files in a same location can cause
+part of a file to be lost.
+
+Q5)
+FAT16 limits entries of 512, but FAT32 does not restrict the number of entries in the root folder.
+
+Difficulties:
+Hardware issue; even if we had right code, we could not test if the code was right because most of STM32 boards or
+SD card had problems. I had to bring my own SD card and it worked fine without RC=3 error.
+
+What I learn:
+I learned that the file system we used had number of character restriction for bitmap file we tried to load.
+I just made file name short and it worked. 

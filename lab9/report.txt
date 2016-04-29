@@ -1,0 +1,30 @@
+Simon Lee (sijlee)
+CSCI-C335
+report.txt
+Lab 9
+
+Q1)
+nunchuk is controlled via I2C. So we do not have to initialize pins in nunchuk.c
+
+Q2)
+f3d_i2c1_read_nunchuk does not take reg as parameter. This means that nunchuk is only using pre-set register that the function only will work for nunchuk.
+
+Q3)
+jx - joystick x axis
+jy - joystick y axis
+ax - accelerometer x axis
+ay - accelerometer y axis
+az - accelerometer z axis
+c - c button
+z - z button
+
+Q4)
+Each cases represent each possible combinations of button pressed.
+
+case 0 - both z and c button pressed
+case 1 - only c button pressed
+case 2 - only z button pressed
+case 3 - no button is pressed
+
+Difficulties & What I learned)
+At first, I did not know that I have to reset the LCD screen by fillScreen everytime I switch to other screen mode. I figured that the LCD does not print out properly without filling it with background, I applied fillScreen when ever I need major screen mode change.

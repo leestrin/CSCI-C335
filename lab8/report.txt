@@ -1,0 +1,44 @@
+Simon Lee (sijlee)
+C335
+Lab 8
+report.txt
+
+Q1.
+
+14 pins.
+1 - Vdd_IO
+2 - SCL
+3 - SDA
+4 - INT2
+5 - INT1
+6 - C1
+7 - GND
+8 - Reserved
+9 - DRDY
+10 - Reserved
+11 - Reserved
+12 - SETP
+13 - SETC
+14 - Vdd
+
+min 2.16 - max 2.6v is required to power the accelerometer/magnetomete.
+accelerometer/magnetometer, or LSM303DLHC is located above right side of the f3 discovery board.
+
+Q2.
+
+Since accelerometer/magnetomete data should be updated continuously, we write to the accelerometer/magnetometer before we can read from them.
+
+Q3.
+
+It converts 3 axis of accelerometer data to float.
+
+Q4.
+
+To calibrate compass data when the sensor is moving and data is changing by small number constantly.
+
+Difficulties.
+When we first initialized magnetomete, we were getting a radian number and couldn't figure out what this number meant.
+We didn't convert it to degrees but we were able to use raw radian number for our compass application by comparing number to where the hardware actually points to.
+
+
+Screen shot of logic analyzer in separate image file.

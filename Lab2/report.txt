@@ -1,0 +1,16 @@
+Simon Lee
+sijlee
+
+I was able to accomplish 
+mywc.c that prints out numbers of line, word and characters
+myprintf that is printf for printing int, string and hex by implementing
+printint, printstring and printhex functions.
+I also made test.c that tests myprintf.c
+
+I was not familiar with C's representation of int, hex, and other variables for printf
+and new line, tab etc that is representation for white spaces.
+So I studied those through Lab 2 guide to overcome.
+
+I learned that C handles white spaces by \t, \r, \n, \f, \v for different situations.
+
+ 

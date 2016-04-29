@@ -1,0 +1,245 @@
+/* pong.c --- 
+ * 
+ * Filename: pong.c
+ * Description: 
+ * Author: Bryce Himebaugh, Simon Lee
+ * I worked with Won Yong Ha, Brandon Burzon
+ * Created: Mon Aug 11 10:50:08 2014
+ * Last-Updated:  2016-04-10
+ *           By: Simon Lee (sijlee)
+ *     Update #: 3
+ * Keywords: 
+ * Compatibility: 
+ * 
+ */
+
+/* Copyright (c) 2004-2007 The Trustees of Indiana University and 
+ * Indiana University Research and Technology Corporation.  
+ * 
+ * All rights reserved. 
+ * 
+ * Additional copyrights may follow 
+ */
+
+/* Code: */
+
+#include "c335sim.h"
+#include "rect.h"
+#include "screen.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <SDL/SDL.h>
+#include <string.h>
+
+#define PADDLE_MOVE_INCREMENT 3
+#define PADDLE_HEIGHT 25
+#define PADDLE_WIDTH 25
+#define PADDLE_THICKNESS 3
+#define BALL_DIM 3
+#define EVENT_LOOP_TIME 20
+
+
+rect_t left_paddle;
+rect_t right_paddle;
+rect_t ball;
+
+int ball_vertX = 1;
+int ball_vertY = 2;
+int mode = 0;
+int count = 0;
+int size = 0;
+int n_key = 1;
+
+/*The event loop that handles the key input*/
+void event_loop(void) {
+  static int paddle_left_move = 0; 
+  static int paddle_right_move = 0;
+  SDL_Event event;
+  SDL_PollEvent(&event);
+  switch(event.type) {
+  case SDL_KEYUP:
+    switch (event.key.keysym.sym) {
+    case SDLK_UP:
+      paddle_right_move = 0;
+      break;
+    case SDLK_DOWN:
+      paddle_right_move = 0;
+      break;
+    case SDLK_a:
+      paddle_left_move = 0;
+      break;
+    case SDLK_z:
+      paddle_left_move = 0;
+      break;
+    case SDLK_n:
+      break;
+    default:
+      break;
+    }
+    break;
+  case SDL_KEYDOWN:
+    switch (event.key.keysym.sym) {
+    case SDLK_UP:
+      paddle_right_move = -PADDLE_MOVE_INCREMENT;
+      break;
+    case SDLK_DOWN:
+      paddle_right_move = PADDLE_MOVE_INCREMENT;
+      break;
+    case SDLK_a:
+      paddle_left_move = -PADDLE_MOVE_INCREMENT; 
+      break;
+    case SDLK_z:
+      paddle_left_move = PADDLE_MOVE_INCREMENT; 
+      break;
+    case SDLK_q:
+      printf("Q PRESSED - Exit Program\n");
+      exit(0);
+      break;
+    case SDLK_n:
+      n_key = n_key * -1;
+      break;
+    default:
+      break;
+    }
+    break;
+  }
+
+  //PORTRAIT
+  if (mode) {
+    if (paddle_left_move) {
+      moveRect(&left_paddle, paddle_left_move, 0, BLACK);
+    }
+    if (paddle_right_move) {
+      moveRect(&right_paddle, paddle_right_move, 0, BLACK);
+    }
+  } else { 
+    if (paddle_left_move) {
+      moveRect(&left_paddle, 0, paddle_left_move, BLACK);
+    }
+    if (paddle_right_move) {
+      moveRect(&right_paddle, 0, paddle_right_move, BLACK);
+    }
+  }
+}
+
+/*Where the collisions are handled*/
+void pong_game(void) {
+  int collision;
+
+  drawString(40,60,"hit q to quit",WHITE,BLACK);
+  redrawRect(&left_paddle);
+  redrawRect(&right_paddle);
+  event_loop();
+  collision = moveRect(&ball, ball_vertX, ball_vertY, BLACK);
+
+  switch (collision) {
+  case COLLISION_TOP:
+    ball_vertY = -ball_vertY;
+    break;
+  case COLLISION_BOTTOM:
+    ball_vertY = -ball_vertY;
+    break;
+  case COLLISION_LEFT:
+    ball_vertX = -ball_vertX;
+    break;
+  case COLLISION_RIGHT:
+    ball_vertX = -ball_vertX;
+    break;
+  }
+}
+
+/*Where the pong_game() is called the rectangels are initialized. */
+int c335_main( int argc, char *argv[] ) {
+
+  if (argc > 1){
+    
+    char fn[10] = "gyro.txt";
+    FILE * file = fopen(fn, "r");
+    char line[256];
+    char *temp;
+    
+    while(fgets(line, sizeof(line), file)) {
+      size++;
+    }
+    fclose(file);
+
+    mode = !strcasecmp(argv[1], "PORTRAIT");
+
+    if (mode) {
+      //portrait mode
+      fillScreen(BLACK);
+      //left bar
+      initRect(&left_paddle,ST7735_width/2-(PADDLE_WIDTH/2),0,PADDLE_WIDTH,PADDLE_THICKNESS,WHITE);
+      //right bar
+      initRect(&right_paddle,ST7735_width/2-(PADDLE_WIDTH/2),ST7735_height-(PADDLE_THICKNESS),PADDLE_WIDTH,PADDLE_THICKNESS,WHITE);
+      //ball
+      initRect(&ball,ST7735_width/2-(BALL_DIM/2),ST7735_height/2-(BALL_DIM/2),BALL_DIM,BALL_DIM,WHITE);
+
+      ///////////loop///////////////
+      while (1) {
+	pong_game();
+	Delay(EVENT_LOOP_TIME);
+
+	char fn[10] = "gyro.txt";
+	FILE * file = fopen(fn, "r");
+	char line[256];
+	char *temp;
+
+	if(n_key == 1) {
+	  count = size;
+	} else {
+	  count = 1;
+	}
+	while(fgets(line, sizeof(line), file)) {
+	  drawString(45, 10*count, line, WHITE, BLACK);
+	  if(n_key == 1) {
+	    count--;
+	  } else {
+	    count++;
+	  }
+	}
+	fclose(file);
+      }
+    } else {
+      //landscape mode
+      fillScreen(BLACK);
+      //left bar
+      initRect(&left_paddle,0,ST7735_height/2-(PADDLE_HEIGHT/2),PADDLE_THICKNESS,PADDLE_HEIGHT,WHITE);
+      //right bar
+      initRect(&right_paddle,ST7735_width-PADDLE_THICKNESS,ST7735_height/2-(PADDLE_HEIGHT/2),PADDLE_THICKNESS,PADDLE_HEIGHT,WHITE);
+      //ball
+      initRect(&ball,ST7735_width/2-(BALL_DIM/2),ST7735_height/2-(BALL_DIM/2),BALL_DIM,BALL_DIM,WHITE);
+      
+      ///////////loop///////////////
+      while (1) {
+	pong_game();
+	Delay(EVENT_LOOP_TIME);
+
+	char fn[10] = "gyro.txt";
+	FILE * file = fopen(fn, "r");
+	char line[256];
+	char *temp;
+
+	if(n_key == 1) {
+	  count = size;
+	} else {
+	  count = 1;
+	}
+	while(fgets(line, sizeof(line), file)) {
+	  drawString(45,10*count,line,WHITE,BLACK);
+	  if(n_key == 1) {
+	    count--;
+	  } else {
+	    count++;
+	  }
+	}
+	fclose(file);
+      }
+    }  
+  } else {
+    printf("No command line argument. Select between \"PORTRAIT\" or \"LANDSCAPE\"\n");
+  }   
+} 
+
+/* pong.c ends here */

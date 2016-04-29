@@ -1,0 +1,21 @@
+Simon Lee
+sijlee
+Final Project Lab Report
+report.txt
+
+1)
+We pair programmed every time we were working. 
+So we did all the tasks listed on final_project.txt together. 
+Our contribution allowed us to actually finish the project.
+
+2)
+It was quite challenging figuring out how to generate 
+new stack blocks while keeping the old block and its position information. 
+We had to play around with screen sizes and overall game speed 
+to find out perfect block size and game speed to make game smoother 
+without user noticing about stack block being generated part to part.
+
+3)
+I would add more visual effects such as making each elements of 
+game using images to make the game look cooler. 
+But right now, I am very satisfied with our current simple & basic look with cool 3D flag effect on the top of screen.

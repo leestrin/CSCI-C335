@@ -1,0 +1,12 @@
+Simon Lee (sijlee)
+Brandon BurZon (brbruzon)
+
+We were able to accomplish everything in Lab3 including
+makefile, dump memory in gdb and write a program to dump memory.
+Everything worked.
+
+When we tried to cast values just by memory block size, we did not know how to handle memory as bytes (or block/size).
+After examining the code given from lab3, we realized that i in for loop of dump.c indicates the index of memory,  we decided to utilize i to determine the cast type of value according to i(memory) index.
+
+char is of 8 bytes, short is 4 bytes, int & float are 2 bytes for 16 bit processors.
+

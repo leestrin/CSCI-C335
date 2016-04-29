@@ -1,0 +1,10 @@
+Simon Lee (sijlee)
+Partner: Ethan Lawton (elawton2)
+
+
+    1) What are specs of the board you are using (ex. Speed, RAM, Flash)?
+       - Operating Frequency: 72MHz
+    2) What does GPIO stand for?
+    3) Is the provided delay function accurate? Why or why not? EDIT This question will be disregarded as this delay function does not have parameter Sorry for the confusion
+    4) What are the Port and Pin Numbers of the two Green LEDs?
+    5) What are the public attributes of the GPIO_InitTypeDef Struct?

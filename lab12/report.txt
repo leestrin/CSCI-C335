@@ -1,0 +1,26 @@
+Simon Lee
+sijlee
+report.txt
+
+Q1)
+Peripheral base address allows us to easily locate where to transfer data from.
+It points to SPIx->DR which depends on what peripheral we put in.
+
+Q2)
+It changes the address to next avalable data slot.
+
+Q)
+To make sure the communication is complete.
+
+Q4)
+Because it's not efficientto use xchng_datablock for transfer of less than 4 bytes
+
+Q5)
+Because the play speed could be affected by processing speed.
+
+Difficulties:
+It was hard to tell if my code was right or wrong because the board sometimes was not functioning at all.
+
+What I learned:
+I learned that we have to try every hardware we could to successfully test this lab.
+I also learned that loading with low level DMA is much faster.

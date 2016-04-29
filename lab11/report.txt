@@ -1,0 +1,13 @@
+Simon Lee (sijlee)
+report.txt
+Lab 11
+CSCI-C335 
+
+Difficulties:
+
+It was difficult to understand concept of interrupt with queue.
+We had no idea where to put flush_uart(), so it was trial and error procedure.
+
+What I learned:
+
+I really struggled during setting up branch in git. I finally learned that I have to "checkout" the branch before starting to work on branch itself.

@@ -1,0 +1,31 @@
+Simon Lee
+sijlee
+Partner: Ben Borders (btborder)
+report.txt
+Lab6
+C335
+
+What does the CS pin do (the CS pin is called SS in the lab manual)?
+- CS pin means Chip Select pin. It allows a device to communicate with peripherals.
+
+Why do you set the CS high at the end of the pin initializations? What other functions in f3d_gyro.c change CS from low to high or high to low?
+- We set CS high at the end of the pin initialization to stop the communication with peripherals with CS set low.
+  f3d_gyro_write and f3d_gyro_read change change CS from high to low.
+
+How do you hook up multiple peripherals on one SPI bus?
+- We use 4 wire that are already connected to board for SPI communication.
+  SPI communication is a master-slave network and it exchanges data by shifting data between an internal register in each device.
+
+The STM has an Operating Frequency of 72 MHz. When initializing SPI1, what do you set the baud rate prescaler to? What is the resulting SPI clock frequency?
+- baud prescaler is set to 8.
+  resulting SPI clock frequency: 10.5 MHz
+
+Does a peripheral (slave) need to be configured with the transmission speed before it can communicate with the microcontroler (master)? Why would you want to be able to do on-the-fly changes in transmission speed?
+- Yes because we want to be able to communicate with peripherals that need certain transmission speed in order to communicate.
+
+Describe what you learned and any difficulties you had
+- We had difficulty figuring out how to allow user input to select axis. 
+  We had to make a new version of getchar function from uart driver that does not stop the application and runs while reset button is not pressed.
+  I learned how SPI bus communicates with peripherals.
+
+* Logic Analyzer Screen shot is in separate Screenshot from 2016-02-25 16-08-04.png file
